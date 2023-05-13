@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SM Application!{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5">Hello everyone!</h1>
+    <h1 class="display-1 text-center my-5">You are in Soufiane Moutaouakkil's Web Application</h1>
+    <div class="btn-lg d-flex justify-content-center align-items-center">
+        <a href="{{ path("pin_index") }}" class="btn btn-primary">Manage Pins!</a>
+    </div>
+{% endblock %}

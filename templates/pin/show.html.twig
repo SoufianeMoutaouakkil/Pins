@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="mt-4">
+        <h3 class="display-3">{{ pin.title }}</h3>
+        <p>{{ pin.description }}</p>
+    </div>
+    <a href="{{ path('pin_index') }}" class="btn btn-primary">
+        Show all Pins
+    </a>
+    <a href="{{ path('pin_update', {'id': pin.id}) }}" class="btn btn-outline-primary">
+        Update this Pin
+    </a>
+{% endblock %}

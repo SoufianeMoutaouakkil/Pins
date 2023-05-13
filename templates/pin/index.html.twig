@@ -1,0 +1,16 @@
+{# templates/pin/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>All Pins</h1>
+    <a href="{{ path('pin_create') }}" class="btn btn-primary">Create Pin</a>
+    <ul>
+        {% for pin in pins %}
+                <a class="display-6 text-decoration-none" href=" {{ path('pin_show', {"id": pin.id}) }}">{{ pin.title }}</a>
+                <p>{{ pin.description }}</p>
+        {% else %}
+            <h1 class="display-6">No pin registred!</h1>
+        {% endfor %}
+    </ul>
+{% endblock %}
