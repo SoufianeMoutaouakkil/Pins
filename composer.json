@@ -26,7 +26,8 @@
         "symfony/yaml": "5.4.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.48"
+        "symfony/maker-bundle": "^1.48",
+        "theofidry/psysh-bundle": "^4.5"
     },
     "config": {
         "allow-plugins": {
