@@ -3,8 +3,10 @@
 namespace App\Security;
 
 use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\NullToken;
@@ -21,7 +23,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 class LoginFormAuthenticator extends AbstractAuthenticator
 {
 
-    public function __construct(private UserRepository $ur)
+    public function __construct(private UserRepository $ur, private UrlGeneratorInterface $urlGen)
     {
         
     }
@@ -155,8 +157,9 @@ class LoginFormAuthenticator extends AbstractAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        dump($exception);
-        return new Response('Failure!');
+        $request->getSession()->getFlashBag()->add('danger', "error in your credentials!");
+        $request->getSession()->set("last_username", $request->request->get('_username'));
+        return new RedirectResponse($this->urlGen->generate('app_sec_login'));
     }
 
     /**
@@ -172,7 +175,9 @@ class LoginFormAuthenticator extends AbstractAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): ?Response
     {
-        return new Response('Success!');
+        $request->getSession()->getFlashBag()->add('success', "Login successfully!");
+
+        return new RedirectResponse($this->urlGen->generate('app_home'));
     }
 
     /**

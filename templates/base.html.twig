@@ -17,7 +17,9 @@
     </head>
     <body>
         {% include "layouts/navbar.html.twig" %}
+
         <div class="container">
+            {% include "layouts/flash.html.twig" %}
             {% block body %}{% endblock %}
         </div>
     </body>

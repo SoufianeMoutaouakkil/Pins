@@ -10,8 +10,16 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('login_csrf') }}">
 
         <div class="mb-3">
-            <label for="username" class="form-label">E-mail</label>
-            <input type="text" id="username" name="_username" class="form-control" required autofocus>
+            <label for="username" class="form-label">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="_username"
+                class="form-control"
+                value="{{ app.session.get('last_username')}}"
+                required
+                autofocus
+            >
         </div>
 
         <div class="mb-3">
