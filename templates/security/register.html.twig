@@ -6,7 +6,13 @@
 
 {% block body %}
     <h1>Register</h1>
-    <form method="POST" action="{{ path('app_sec_register') }}">
+    {{ form_start(form)}}
+        {{ form_widget(form)}}
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" formnovalidate>Register</button>
+        </div>
+    {{ form_end(form)}}
+    {# <form method="POST" action="{{ path('app_sec_register') }}">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('login_csrf') }}">
 
         <div class="mb-3">
@@ -19,8 +25,6 @@
             <input type="password" id="password" name="_password" class="form-control" required>
         </div>
 
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-    </form>
+        
+    </form> #}
 {% endblock %}
